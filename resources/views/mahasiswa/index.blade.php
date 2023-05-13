@@ -78,15 +78,13 @@
             <tr>
                 <th>Nama</th>
                 <th>Email</th>
-                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($mahasiswa1 as $no => $mhs)
+            @foreach ($mahasiswas as $mahasiswa)
                 <tr>
-                    <th>{{ $no + 1 }}</th>
-                    <th>Email</th>
-                    <th>Aksi</th>
+                    <td>{{ $mahasiswa->nama }}</td>
+                    <td>{{ $mahasiswa->email }}</td>
                 </tr>
             @endforeach
         </tbody>

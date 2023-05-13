@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('mahasiswa.index');
-});
+// Route::get('/', function () {
+//     return view('mahasiswa.index');
+// });
 
-Route::resource('mahasiswa', MahasiswaController::class);
+// Route::get('/mahasiswa', MahasiswaController);
+Route::get('/', [MahasiswaController::class, 'index']);
