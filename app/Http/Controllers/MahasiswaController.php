@@ -33,8 +33,23 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validasi input
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'email' => 'required|email',
+        ]);
+
+        // Simpan data baru
+        $mahasiswa = new Mahasiswa();
+        $mahasiswa->nama = $validatedData['nama'];
+        $mahasiswa->email = $validatedData['email'];
+        $mahasiswa->save();
+
+        // Redirect dengan menambahkan fragment hash untuk menampilkan modal
+        return redirect()->route('mahasiswa.index', '#successModal')->with('success', 'Data mahasiswa berhasil ditambahkan');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -57,14 +72,29 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'email' => 'required|email',
+        ]);
+
+        $mahasiswa = Mahasiswa::findOrFail($id);
+        $mahasiswa->nama = $validatedData['nama'];
+        $mahasiswa->email = $validatedData['email'];
+        $mahasiswa->save();
+
+        return redirect()->route('mahasiswa.index')->with('success', 'Data mahasiswa berhasil diperbarui');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $mahasiswa = Mahasiswa::findOrFail($id);
+        $mahasiswa->delete();
+
+        return redirect()->route('mahasiswa.index')->with('success', 'Data mahasiswa berhasil dihapus');
     }
+
 }
