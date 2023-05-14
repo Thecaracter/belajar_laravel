@@ -20,5 +20,5 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/mahasiswa', MahasiswaController);
 Route::get('/', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
 Route::post('/', [MahasiswaController::class, 'store'])->name('mahasiswa.store');
-Route::put('/{id}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
+Route::post('/{id}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
 Route::delete('/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
